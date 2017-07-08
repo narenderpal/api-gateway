@@ -1,5 +1,5 @@
 {
-  "api.gateway.http.port": 8092,
+  "api.gateway.http.port": 8080,
   "api.gateway.http.address": "0.0.0.0",
   "api.gateway.http.address.external": "localhost",
   "circuit-breaker": {

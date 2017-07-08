@@ -21,17 +21,18 @@ public class APIGatewayVerticle extends BaseVerticle {
 
 
   private static final String DEFAULT_HOST = "0.0.0.0";
-  private static final int DEFAULT_PORT = 8092;
+  private static final int DEFAULT_PORT = 8080;
 
   private static Logger logger = LoggerFactory.getLogger(APIGatewayVerticle.class);
 
   private static final Map<String, String> SERVICE_DNS;
   static {
     SERVICE_DNS = new HashMap<>();
-    //SERVICE_DNS.put("user.v1", "user-microservice");
-    //SERVICE_DNS.put("question.v1", "question-microservice");
-    SERVICE_DNS.put("user.v1", "localhost:8091");
-    SERVICE_DNS.put("question.v1", "localhost:8090");
+    SERVICE_DNS.put("user.v1", "104.198.157.96:80");
+    SERVICE_DNS.put("question.v1", "35.197.27.49:80");
+    SERVICE_DNS.put("questions.v2", "104.154.110.52:80");
+    //SERVICE_DNS.put("user.v1", "localhost:8091");
+    //SERVICE_DNS.put("question.v1", "localhost:8090");
   }
 
 
@@ -62,9 +63,10 @@ public class APIGatewayVerticle extends BaseVerticle {
 
     // auth token validation handler
     router.route("/api/*").
-      method(HttpMethod.POST).
-      method(HttpMethod.PUT).
-      method(HttpMethod.DELETE).
+      method(HttpMethod.PATCH).
+      //method(HttpMethod.POST).
+      //method(HttpMethod.PUT).
+      //method(HttpMethod.DELETE).
       handler(this::authHandler);
 
     router.route().handler(UserSessionHandler.create(authProvider));
